@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:ses_sion_1_7/auth/domain/logInPresenter.dart';
 import 'package:ses_sion_1_7/auth/presentation/pages/holder.dart';
 import 'package:ses_sion_1_7/auth/presentation/pages/logIn.dart';
 import 'package:ses_sion_1_7/common/controllers/passwordController.dart';
@@ -12,6 +13,15 @@ class SignUpPage extends StatefulWidget{
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+
+  late SignUpPresenter presenter;
+
+  void initState(){
+    super.initState();
+    presenter = SignUpPresenter();
+  }
+
+  bool isValid = false;
 
   var email = TextEditingController();
   var password = PasswordEditingController();
@@ -45,12 +55,14 @@ class _SignUpPageState extends State<SignUpPage> {
                 label: "Пароль",
                 hint: "**********",
                 controller: password,
-                onChange: onChange),
+                onChange: onChange,
+                enableObscure: true,),
             CustomTextField(
                 label: "Повторите пароль",
                 hint: "**********",
                 controller: confirmPassword,
-                onChange: onChange),
+                onChange: onChange,
+                enableObscure: true,),
             Expanded(
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.end,

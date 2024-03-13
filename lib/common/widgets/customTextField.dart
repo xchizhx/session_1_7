@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 class CustomTextField extends StatefulWidget{
   final String label;
   final String hint;
-  final bool enavleObscure;
+  final bool enableObscure;
   final TextEditingController controller;
   final Function(String)? onChange;
 
@@ -13,7 +13,7 @@ class CustomTextField extends StatefulWidget{
     super.key,
     required this.label,
     required this.hint,
-    this.enavleObscure = false, 
+    this.enableObscure = false,
     required this.controller,
     this.onChange});
 
@@ -22,7 +22,7 @@ class CustomTextField extends StatefulWidget{
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  bool isObscure = false;
+  bool isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,6 +38,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             controller: widget.controller,
             onChanged: widget.onChange,
             obscuringCharacter: "*",
+            obscureText: (widget.enableObscure) ? isObscure : false,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(4),
@@ -54,12 +55,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   color: Color.fromARGB(255, 129, 129, 129)
                 )
               ),
-              suffixIcon: (widget.enavleObscure) ?
+              suffixIcon: (widget.enableObscure) ?
                   GestureDetector(
                     onTap: (){
-                      isObscure = !isObscure;
+                      setState(() {
+                        isObscure = !isObscure;
+                      });
                     },
-                    child: Image.asset("assets/img_2.png"),
+                    child: Image.asset("assets/eye-slash.png"),
                   ) : null
             ),
           ),

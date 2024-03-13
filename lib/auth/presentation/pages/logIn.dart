@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../../common/controllers/passwordController.dart';
 import '../../../common/widgets/customTextField.dart';
+import 'forgorPasswordPage.dart';
 import 'holder.dart';
 
 class LogIn extends StatefulWidget{
@@ -15,6 +16,7 @@ class _LogInState extends State<LogIn> {
 
   var email = TextEditingController();
   var password = PasswordEditingController();
+  bool rememberPassword = false;
 
   onChange(_){
 
@@ -44,6 +46,53 @@ class _LogInState extends State<LogIn> {
                 hint: "**********",
                 controller: password,
                 onChange: onChange),
+
+            SizedBox(height: 18,),
+        Row(
+          children: [
+            SizedBox.square(
+              dimension: 22,
+              child: Transform.scale(
+                scale: 1.2,
+                child: Checkbox(
+                  side: BorderSide(
+                    width: 1,
+                    color: Color.fromARGB(255, 129, 129, 129)
+                  ),
+                  value: rememberPassword,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)
+                  ),
+                  onChanged: (newValue) {
+                    setState(() {
+                      rememberPassword = newValue!;
+                    });
+                  },
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+                child: Text(
+                    "Запомнить меня",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Color.fromARGB(255, 129, 129, 129))
+                    )
+                ),
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => ForgotPasswordPage())
+                );
+              },
+              child: Text(
+                  "Забыли пароль?",
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Color.fromARGB(255, 106, 129, 249)
+                  )
+              ),
+            )
+          ]),
             Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -55,7 +104,7 @@ class _LogInState extends State<LogIn> {
                             Navigator.of(context).push(
                                 MaterialPageRoute(builder: (_) => Holder()));
                           },
-                          child: Text("Зарегестрироваться")),
+                          child: Text("Войти")),
                     ),
                     SizedBox(height: 14,),
                     GestureDetector(
@@ -66,9 +115,9 @@ class _LogInState extends State<LogIn> {
                       child: RichText(
                           text: TextSpan(
                               children: [
-                                TextSpan(text: "У меня уже есть аккаунт! ",
+                                TextSpan(text: "У меня нет аккаунта! ",
                                     style: Theme.of(context).textTheme.titleMedium),
-                                TextSpan(text: "Войти",
+                                TextSpan(text: "Создать",
                                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                         color: Color.fromARGB(255, 106, 139, 249)
                                     ))
