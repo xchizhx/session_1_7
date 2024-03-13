@@ -30,14 +30,23 @@ class _CustomTextFieldState extends State<CustomTextField> {
       children: [
         SizedBox(height: 24,),
         Text(widget.label,
-        style: Theme.of(context).textTheme.titleLarge,),
+        style: Theme.of(context).textTheme.titleMedium,),
         SizedBox(height: 8,),
         SizedBox(
           width: double.infinity,
           child: TextField(
             controller: widget.controller,
             onChanged: widget.onChange,
+            obscuringCharacter: "*",
             decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(4),
+                  borderSide: BorderSide(
+                  color: Color.fromARGB(255, 129, 129, 129)
+                  )
+                  ),
+              hintText: widget.hint,
+              hintStyle: Theme.of(context).textTheme.titleMedium,
               contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(4),

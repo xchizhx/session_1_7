@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../../common/controllers/passwordController.dart';
 import '../../../common/widgets/customTextField.dart';
@@ -47,12 +48,16 @@ class _LogInState extends State<LogIn> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    FilledButton(
-                        onPressed: (){
-                          Navigator.of(context).push(
-                              MaterialPageRoute(builder: (_) => Holder()));
-                        },
-                        child: Text("Зарегестрироваться")),
+                    SizedBox(
+                      width: double.infinity,
+                      child: FilledButton(
+                          onPressed: (){
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (_) => Holder()));
+                          },
+                          child: Text("Зарегестрироваться")),
+                    ),
+                    SizedBox(height: 14,),
                     GestureDetector(
                       onTap: (){
                         Navigator.of(context).push(
@@ -69,7 +74,8 @@ class _LogInState extends State<LogIn> {
                                     ))
                               ])
                       ),
-                    )
+                    ),
+                    SizedBox(height: 32,)
                   ],
                 ))
           ],

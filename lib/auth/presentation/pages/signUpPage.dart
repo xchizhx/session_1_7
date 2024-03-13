@@ -55,12 +55,16 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    FilledButton(
-                        onPressed: (){
-                          Navigator.of(context).push(
-                              MaterialPageRoute(builder: (_) => Holder()));
-                        },
-                        child: Text("Зарегестрироваться")),
+                    SizedBox(
+                      width: double.infinity,
+                      child: FilledButton(
+                          onPressed: (){
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (_) => Holder()));
+                          },
+                          child: Text("Зарегестрироваться")),
+                    ),
+                    SizedBox(height: 14,),
                     GestureDetector(
                       onTap: (){
                         Navigator.of(context).push(
@@ -77,7 +81,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           ))
                         ])
                       ),
-                    )
+
+                    ),
+                    SizedBox(height: 32,)
                   ],
             ))
           ],
