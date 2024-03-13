@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class CustomTextField extends StatefulWidget{
   final String label;
@@ -31,25 +32,27 @@ class _CustomTextFieldState extends State<CustomTextField> {
         Text(widget.label,
         style: Theme.of(context).textTheme.titleLarge,),
         SizedBox(height: 8,),
-        TextField(
-          controller: widget.controller,
-          onChanged: widget.onChange,
-          decoration: InputDecoration(
-
-            contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: BorderSide(
-                color: Color.fromARGB(255, 129, 129, 129)
-              )
+        SizedBox(
+          width: double.infinity,
+          child: TextField(
+            controller: widget.controller,
+            onChanged: widget.onChange,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(4),
+                borderSide: BorderSide(
+                  color: Color.fromARGB(255, 129, 129, 129)
+                )
+              ),
+              suffixIcon: (widget.enavleObscure) ?
+                  GestureDetector(
+                    onTap: (){
+                      isObscure = !isObscure;
+                    },
+                    child: Image.asset("assets/img_2.png"),
+                  ) : null
             ),
-            suffixIcon: (widget.enavleObscure) ?
-                GestureDetector(
-                  onTap: (){
-                    isObscure = !isObscure;
-                  },
-                  child: Image.asset("assets/img_2.png"),
-                ) : null
           ),
         )
       ],
